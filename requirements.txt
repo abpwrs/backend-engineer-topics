@@ -1,0 +1,5 @@
+starlette
+boto3
+botocore-stubs 
+boto3-stubs[all]
+uvicorn

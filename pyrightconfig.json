@@ -1,0 +1,5 @@
+{
+  "reportIncompatibleMethodOverride": true,
+  "reportUnknownMemberType": true,
+  "reportWildcardImportFromLibrary": false
+}

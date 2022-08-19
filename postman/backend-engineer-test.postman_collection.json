@@ -1,0 +1,18 @@
+{
+	"info": {
+		"_postman_id": "78c3497b-4875-4342-9b50-f7fc743e5732",
+		"name": "backend-engineer-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "395643"
+	},
+	"item": [
+		{
+			"name": "/healthz",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
