@@ -1,6 +1,5 @@
 import uvicorn
 import os
-import boto3
 from starlette.routing import Route
 from starlette.requests import Request
 from starlette.applications import Starlette
@@ -8,6 +7,7 @@ from starlette.responses import JSONResponse
 
 import logging
 
+from src.aws import s3, events
 
 s3_bucket = os.environ["S3_BUCKET"]
 s3_namespace = os.environ["S3_NAMESPACE"]
@@ -24,16 +24,15 @@ def create_file(request: Request):
     name: str = request.path_params["name"]
     if name not in NEEDED_FILES:
         raise Exception("???")
-    session = boto3.Session(profile_name="sdc-data-dev:Developer")
-    s3_client = session.client("s3")
+
     return JSONResponse(
-        s3_client.generate_presigned_url(
-            "put_object", Params={"Bucket": s3_bucket, "Key": s3_namespace + name}, HttpMethod="PUT"
-        )
+        s3.generate_presigned_url("put_object", s3_bucket, s3_namespace + name, "PUT")
     )
 
+
 def publishAllFilesUploadedEvent():
-    pass # What need to be here ????
+    pass  # What need to be here ????
+
 
 def health(request: Request):
     return JSONResponse("OK")
