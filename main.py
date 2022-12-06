@@ -7,6 +7,7 @@ from starlette.responses import JSONResponse
 
 import logging
 
+# these are mocked to not actually interact w/ S3 for live interview purposes
 from src.aws import s3, events
 
 s3_bucket = os.environ["S3_BUCKET"]
@@ -20,7 +21,7 @@ def create_manifest(names: str):
     return ["a", "b"]
 
 
-def create_file(request: Request):
+def create_presigned_url(request: Request):
     name: str = request.path_params["name"]
     if name not in NEEDED_FILES:
         raise Exception("???")
@@ -40,7 +41,7 @@ def health(request: Request):
 
 routes = [
     Route("/healthz", health, methods=["GET"]),
-    Route("/create/{name:str}", create_file, methods=["GET"]),
+    Route("/upload-url/{name:str}", create_presigned_url, methods=["GET"]),
 ]
 
 

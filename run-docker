@@ -1,1 +1,2 @@
-docker run -it ai/backend-engineer-test 
+#!/usr/bin/env bash
+docker run -it ai/backend-engineer-test
