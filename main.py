@@ -20,20 +20,24 @@ def create_manifest(names: str):
     return ["a", "b"]
 
 
-def create_file(request: Request):
+def create_presigned_url(request: Request):
     name: str = request.path_params["name"]
     if name not in NEEDED_FILES:
         raise Exception("???")
+    
     session = boto3.Session(profile_name="sdc-data-dev:Developer")
     s3_client = session.client("s3")
+
     return JSONResponse(
         s3_client.generate_presigned_url(
             "put_object", Params={"Bucket": s3_bucket, "Key": s3_namespace + name}, HttpMethod="PUT"
         )
     )
 
+
 def publishAllFilesUploadedEvent():
-    pass # What need to be here ????
+    pass  # What needs to be here ????
+
 
 def health(request: Request):
     return JSONResponse("OK")
@@ -41,7 +45,7 @@ def health(request: Request):
 
 routes = [
     Route("/healthz", health, methods=["GET"]),
-    Route("/create/{name:str}", create_file, methods=["GET"]),
+    Route("/upload-url/{name:str}", create_presigned_url, methods=["GET"]),
 ]
 
 
