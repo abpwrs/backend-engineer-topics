@@ -1,16 +1,53 @@
 {
 	"info": {
-		"_postman_id": "78c3497b-4875-4342-9b50-f7fc743e5732",
+		"_postman_id": "20936fba-99aa-4da4-b8c8-415c44f447e2",
 		"name": "backend-engineer-test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "395643"
+		"_exporter_id": "23092294"
 	},
 	"item": [
 		{
 			"name": "/healthz",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8010/healthz",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8010",
+					"path": [
+						"healthz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/upload-url",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8010/upload-url/a",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8010",
+					"path": [
+						"upload-url",
+						"a"
+					]
+				}
 			},
 			"response": []
 		}
